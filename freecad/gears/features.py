@@ -927,6 +927,8 @@ class ProfileTimingGear(BaseGear):
 
         obj.addProperty(
             "App::PropertyLength", "od", "computed", "outer diameter", 1)
+        obj.addProperty(
+            "App::PropertyLength", "radius", "computed", "outer diameter", 1)
         obj.teeth = 24
         obj.type = ['HTD5M', 'HTD3M', 'HTD8M', 'MXL', '40 D.P.', 'XL', 'H', 'T2.5', 'T5', 'T10', 'AT5', 'GT2 2MM', 'GT2 3MM', 'GT2 5MM']
         obj.height = '9.3 mm'
@@ -948,11 +950,11 @@ class ProfileTimingGear(BaseGear):
             c = gt_data['c']
             d = gt_data['d']
             od = fp.od = ((c * math.pow(teeth,d)) / (b + math.pow(teeth,d))) * teeth
+        radius = fp.radius = od / 2
         polygon = gt_data['polygon']
         teeth_width = fp.teeth_width= gt_data['teeth_width']
         teeth_depth = fp.teeth_depth = gt_data['teeth_depth']
         teeth_radius = fp.teeth_radius = (teeth_width + fp.additional_teeth_width.Value) / 2.0
-        radius = od / 2
         teeth_distance_from_center = math.sqrt(math.pow(radius, 2) - math.pow(teeth_radius,2))
         teeth_scale = teeth_width / (teeth_width + fp.additional_teeth_width.Value)
 
